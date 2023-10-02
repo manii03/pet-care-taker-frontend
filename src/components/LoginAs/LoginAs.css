@@ -1,0 +1,125 @@
+.Loginas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.Welcome{
+  margin-top: 5%;
+  height: 10vh;
+  width: 80vw;
+  font-size: large;
+  font-weight: 1000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+
+.LoginAsOption{
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  height: 10vh;
+  width: 80vw;
+  font-size: large;
+  font-weight: 1000000;
+  margin-bottom: 2%;
+}
+
+
+.proceedAsPetOwnerText {
+  margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 10vh;
+    width: 80vw;
+    font-size: large;
+    font-weight: 1000000;
+    margin-bottom: 2%;
+}
+
+
+.proccedAsPetOwnerButtons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 4px;
+  align-items: center;
+  gap: 200px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+
+.proceedAsCaretakerText{
+  margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 10vh;
+    width: 80vw;
+    font-size: large;
+    font-weight: 1000000;
+    margin-bottom: 2%;
+}
+
+
+.proceedAsCareTakerButtons{
+    display: flex;
+      flex-direction: row;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      border-radius: 4px;
+      align-items: center;
+      gap: 100px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+}
+
+
+.closeModalButtons {
+  margin-left: 95%;
+  margin-right: 1%;
+  margin-top: 1%;
+  text-align: right;
+  border: none;
+  outline: none;
+}
+
+.topModalButtons{
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  outline: none;
+}
+
+
+.Modal{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 83vh;
+}
+
+
+.button{
+  outline: none;
+  border: none;
+  margin: 10px;
+  border-radius: 10px;
+  height: 5vh;
+  width: 20vh;
+}

@@ -1,0 +1,79 @@
+.Login{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', Lato, monospace;
+}
+
+
+.text {
+  margin-top: 5%;
+  font-size: 8vh;
+  font-weight: 700;
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  gap: 30px;
+  border-radius: 20px;
+}
+
+
+.input {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  background-color: white;
+  width: 48vw;
+  height: 10vh;
+  gap:10px;
+  border-radius: 6px;
+}
+
+.input img {
+  margin: 0px 20px;
+}
+
+.input input {
+  height: 40vh;
+  width: 50vw;
+  background: transparent;
+  color:#797979;
+  font-size: medium;
+  outline: none;
+  border: none;
+}
+
+.forget-Password {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 30px;
+}
+
+
+.clickHereText{
+  font-size: large;
+  font-weight: 1000;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.submit-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  color: orange;
+  font-size: 20px;
+}
