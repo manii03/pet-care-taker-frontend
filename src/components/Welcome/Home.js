@@ -3,9 +3,12 @@ import PetOwner from "../../pictures/petOwner.jpeg";
 import CareTaker from "../../pictures/careTaker.jpeg";
 import HomeTopDog from "../../pictures/homeTopDog.jpg";
 import { colors } from "../../utils/Colors";
-import { LOCALHOST } from "../../constants/common";
+import { LOGIN } from "../../constants/common";
+import { useNavigate } from "react-router-dom";
+import NavigateToPage from "../../utils/navigationUtils";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="Home">
       <img className="homeTopDogImage" src={HomeTopDog} alt="HomeTopDog" />
@@ -106,7 +109,7 @@ function Home() {
         </div>
         <button
           className="button"
-          onClick={() => (window.location = `${LOCALHOST}/login/`)}
+          onClick={() => NavigateToPage(navigate, LOGIN)}
           style={{
             backgroundColor: colors.COMPLIMENTARY_RED,
             color: colors.FONT_SECONDARY,

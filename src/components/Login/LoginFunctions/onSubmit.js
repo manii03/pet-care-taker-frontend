@@ -1,8 +1,15 @@
-import { LOGIN_AS } from "../../../constants/common";
+import { LOCALHOST, LOGIN_AS } from "../../../constants/common";
 import { SIGNUP } from "../../../constants/constants";
 import NavigateToPage from "../../../utils/navigationUtils";
 
-async function onSubmit(currentAuthState, email, name, password, navigate, setMessage) {
+async function onSubmit(
+  currentAuthState,
+  email,
+  name,
+  password,
+  navigate,
+  setMessage
+) {
   const data = {
     name: name,
     email: email,
@@ -20,51 +27,51 @@ async function onSubmit(currentAuthState, email, name, password, navigate, setMe
   } else {
     setMessage("");
 
-  let options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-    body: JSON.stringify(data),
-  };
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
 
-  if (currentAuthState === SIGNUP) {
-    console.log("Hi i'm in :", currentAuthState);
-    let response = await fetch("http://localhost:8000/signUp", options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
+    if (currentAuthState === SIGNUP) {
+      console.log("Hi i'm in :", currentAuthState);
+      let response = await fetch(`${LOCALHOST}/signUp`, options)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
 
-        return Promise.reject(response);
-      })
-      .then((finalResponse) => {
-        localStorage.setItem("email", data.email);
-        NavigateToPage(navigate,LOGIN_AS)
-      })
-      .catch((errorResponse) => {
-        errorResponse.json().then((error) => {
-          console.log("Error is : ", error);
+          return Promise.reject(response);
+        })
+        .then((finalResponse) => {
+          localStorage.setItem("email", data.email);
+          NavigateToPage(navigate, LOGIN_AS);
+        })
+        .catch((errorResponse) => {
+          errorResponse.json().then((error) => {
+            console.log("Error is : ", error);
+          });
         });
-      });
-  } else {
-    let response = fetch("http://localhost:8000/login", options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
+    } else {
+      let response = fetch(`${LOCALHOST}/login`, options)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
 
-        return Promise.reject(response);
-      })
-      .then((finalResponse) => {
-        localStorage.setItem("email", data.email);
-      })
-      .catch((errorResponse) => {
-        console.log(errorResponse);
-        errorResponse.json().then((error) => {
-          console.log("Error is : ", error);
+          return Promise.reject(response);
+        })
+        .then((finalResponse) => {
+          localStorage.setItem("email", data.email);
+        })
+        .catch((errorResponse) => {
+          console.log(errorResponse);
+          errorResponse.json().then((error) => {
+            console.log("Error is : ", error);
+          });
         });
-      });
     }
   }
 }

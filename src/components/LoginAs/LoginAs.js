@@ -5,7 +5,7 @@ import { colors } from "../../utils/Colors";
 import PetAdditionComponent from "../PetAdditionComponent/PetAdditionComponent";
 import { useNavigate } from "react-router-dom";
 import onProceedAsButtonClicked from "../PetAdditionComponent/functions/onProceedAsButtonClicked";
-import { PET_AVAILABLE } from "../../constants/common";
+import { LOCALHOST, PET_AVAILABLE } from "../../constants/common";
 import triggerAPI from "../../utils/APIUtils";
 
 function LoginAs() {
@@ -58,7 +58,7 @@ function LoginAs() {
 
     // Fake api for making post requests
     let addressResponse = await fetch(
-      "http://localhost:8000/addAddress",
+      `${LOCALHOST}/addAddress`,
       addressOptions
     );
 
@@ -70,10 +70,7 @@ function LoginAs() {
       body: JSON.stringify(petPayload),
     };
     // Fake api for making post requests
-    let petResponse = await fetch(
-      "http://localhost:8000/addPetInfo",
-      petOptions
-    );
+    let petResponse = await fetch(`${LOCALHOST}/addPetInfo`, petOptions);
 
     navigate("/caretaker");
   };

@@ -7,7 +7,12 @@ import { colors } from "../../utils/Colors";
 import generateNameString from "../../commonFunctions/generateNameString";
 import triggerAPI from "../../utils/APIUtils";
 import NavigateToPage from "../../utils/navigationUtils";
-import { FETCH_ADDRESS, GET_USERS_BY_CITIES, LOGIN, MANAGE_ADDRESS } from "../../constants/common";
+import {
+  FETCH_ADDRESS,
+  GET_USERS_BY_CITIES,
+  LOGIN,
+  MANAGE_ADDRESS,
+} from "../../constants/common";
 import { CARETAKERHEADERTEXT } from "../../constants/constants";
 
 function CareTaker() {
@@ -22,7 +27,7 @@ function CareTaker() {
     const email = localStorage.getItem("email");
 
     if (!email) {
-      NavigateToPage(navigate,LOGIN);
+      NavigateToPage(navigate, LOGIN);
     }
 
     const data = {
@@ -57,7 +62,7 @@ function CareTaker() {
           "no address registered to this email"
         )
       ) {
-        NavigateToPage(navigate,MANAGE_ADDRESS);
+        NavigateToPage(navigate, MANAGE_ADDRESS);
       }
     }
   };
