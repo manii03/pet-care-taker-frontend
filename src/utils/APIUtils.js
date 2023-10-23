@@ -9,7 +9,7 @@ async function triggerAPI(api, request) {
 
     body: JSON.stringify(request),
   };
-  return await fetch(`${LOCALHOST}${api}`, options)
+  return await fetch(`${LOCALHOST}/${api}`, options)
     .then((response) => {
       if (response.ok) {
         return response.json();

@@ -3,6 +3,7 @@ import PetOwner from "../../pictures/petOwner.jpeg";
 import CareTaker from "../../pictures/careTaker.jpeg";
 import HomeTopDog from "../../pictures/homeTopDog.jpg";
 import { colors } from "../../utils/Colors";
+import { LOCALHOST } from "../../constants/common";
 
 function Home() {
   return (
@@ -105,7 +106,7 @@ function Home() {
         </div>
         <button
           className="button"
-          onClick={() => (window.location = "http://localhost:3000/login/")}
+          onClick={() => (window.location = `${LOCALHOST}/login/`)}
           style={{
             backgroundColor: colors.COMPLIMENTARY_RED,
             color: colors.FONT_SECONDARY,
