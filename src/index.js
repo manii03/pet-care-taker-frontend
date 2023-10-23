@@ -12,12 +12,12 @@ import PetOwner from "./components/PetOwner/PetOwner";
 import ManageAddress from "./components/ManageAddress/ManageAddress";
 import ManagePets from "./components/ManagePets/ManagePets";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/loginas" element={<LoginAs />} />
