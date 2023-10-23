@@ -1,0 +1,12 @@
+.AddressSelecter *{
+  background-color: wheat;
+  border-radius: 15px;
+}
+
+.AddressSelecter *::checked{
+  background-color: wheat;
+}
+
+.AddressSelecter *::hover {
+  background-color: wheat;
+}

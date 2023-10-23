@@ -5,7 +5,7 @@
 
 
 .bm-burger-button {
-  position: fixed;
+  position: absolute;
   width: 36px;
   height: 30px;
   left: 36px;
@@ -14,7 +14,7 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #AFC3AB;
+  background: #ffffff
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -30,7 +30,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: #ffffff;
 }
 
 /*
@@ -69,4 +69,60 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+
+.careTakerContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: space-between;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.careTakerHeader{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 10vh;
+    width: 100%;
+}
+
+.careTakerHeaderText{
+  display: flex;
+  justify-content: center;
+  font-size: larg;
+  width:100%;
+  margin-left: 100px;
+}
+
+.careTakerAddressSelector{
+  display: flex;
+  justify-content: flex-end;
+  padding-right:5px
+}
+
+.careTakerBody{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 10px;
+}
+
+.availablePets{
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+  min-height: 10px;
+}
+
+.availablePetCard{
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
 }

@@ -10,6 +10,8 @@ import reportWebVitals from "./reportWebVitals";
 import CareTaker from "./components/CareTaker/CareTaker";
 import PetOwner from "./components/PetOwner/PetOwner";
 import ManageAddress from "./components/ManageAddress/ManageAddress";
+import ManagePets from "./components/ManagePets/ManagePets";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +24,7 @@ root.render(
         <Route path="/caretaker" element={<CareTaker />} />
         <Route path="/petowner" element={<PetOwner />} />
         <Route path="/manageaddress" element={<ManageAddress />} />
+        <Route path="/managepets" element={<ManagePets />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

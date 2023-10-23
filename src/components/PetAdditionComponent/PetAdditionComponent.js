@@ -6,41 +6,21 @@ import "../LoginAs/LoginAs.css";
 import crossImg from "../../pictures/cross.png";
 import backImg from "../../pictures/back.png";
 import skipImg from "../../pictures/next.png";
-import { useNavigate } from "react-router-dom";
+import addPet from "./functions/addPet";
+import deletePet from "./functions/deletePet";
+import closePetModal from "../LoginAs/LoginAsFunctions/closePetModal";
+import onBackModal from "../LoginAs/LoginAsFunctions/onBackModal";
 
 const PetAdditionComponent = ({
   petArray,
   OpenPetModal,
-  onBackModal,
-  closePetModal,
+  setOpenPetModal,
   onPetSubmit,
+  setOpenLoginAsOpenModal,
 }) => {
   const [countPet, setCountPet] = useState(0);
-  const navigate = useNavigate();
-
-  const deletePet = () => {
-    if (countPet >= 1) {
-      setCountPet((prev) => {
-        return prev - 1;
-      });
-    }
-  };
-
   const onSkip = () => {
-    navigate("/caretaker");
-  };
-
-  const addPet = () => {
-    setCountPet((prev) => {
-      return prev + 1;
-    });
-
-    petArray.push({
-      petName: "",
-      petType: "",
-      breed: "",
-      age: "",
-    });
+    onPetSubmit();
   };
 
   const PetAdditionContainer = (index) => {
@@ -99,33 +79,31 @@ const PetAdditionComponent = ({
             }}
           >
             <img
-              onClick={() => onBackModal()}
-              className="Image"
+              onClick={() =>
+                onBackModal(setOpenPetModal, setOpenLoginAsOpenModal)
+              }
+              className="petAdditionComponenetImage"
               src={backImg}
               alt="Cross"
-              height="30px"
-              width="30px"
             />
             <img
-              onClick={() => closePetModal()}
-              className="Image"
+              onClick={() => closePetModal(setOpenPetModal)}
+              className="petAdditionComponenetImage"
               src={crossImg}
               alt="Cross"
-              height="30px"
-              width="30px"
             />
           </div>
           {[...Array(countPet)].map((ele, index) => (
-            <PetAdditionContainer index={index} />
+            <PetAdditionContainer index={index} petArray={petArray} />
           ))}
-          <div className="buttons">
+          <div className="petAdditionComponentButtons">
             <button
               className="button"
               style={{
                 backgroundColor: colors.COMPLIMENTARY_BLUE,
                 color: colors.FONT_SECONDARY,
               }}
-              onClick={() => addPet()}
+              onClick={() => addPet(setCountPet, petArray)}
             >
               Add Pet Details
             </button>
@@ -152,7 +130,7 @@ const PetAdditionComponent = ({
                   backgroundColor: colors.COMPLIMENTARY_RED,
                   color: colors.FONT_SECONDARY,
                 }}
-                onClick={() => deletePet()}
+                onClick={() => deletePet(countPet, setCountPet)}
               >
                 Delete Pet Details
               </button>
@@ -160,23 +138,12 @@ const PetAdditionComponent = ({
               ""
             )}
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              width: "100%",
-              alignItems: "flex-end",
-              flex: 1,
-            }}
-          >
+          <div className="petAdditionComponentSkip">
             <img
               onClick={() => onSkip()}
               src={skipImg}
-              className="Image"
+              className="petAdditionComponenetImage"
               alt="skip"
-              height="30px"
-              width="30px"
             />
           </div>
         </div>

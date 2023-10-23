@@ -1,0 +1,58 @@
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px,
+}
+
+.editDeleteButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.headings{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px;
+  align-items: center;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+.managePets{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.petDetails{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+}
+
+.petDetailsBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  height: 10vh;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
+.petNameType{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+

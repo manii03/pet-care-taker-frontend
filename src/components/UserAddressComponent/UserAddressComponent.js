@@ -4,12 +4,15 @@ import "./UserAddressComponent.css";
 import { useState } from "react";
 import crossImg from "../../pictures/cross.png";
 import nextImg from "../../pictures/next.png";
+import onAddressSubmit from "../LoginAs/LoginAsFunctions/onAddressSubmit";
 
 const UserAddressComponent = ({
   addressArray,
-  openModal,
+  openLoginAsModal,
   closeModal,
-  onAddressSubmit,
+  setOpenLoginAsOpenModal,
+  setOpenPetModal,
+  setAddressArray,
 }) => {
   const [countAddress, setCountAddress] = useState(0);
 
@@ -20,6 +23,7 @@ const UserAddressComponent = ({
       setCountAddress((prev) => {
         return prev - 1;
       });
+      addressArray.pop();
     }
   };
 
@@ -33,6 +37,8 @@ const UserAddressComponent = ({
       city: "",
       pinCode: "",
     });
+
+    console.log("ADDRESSES ARE HERE MANISHA: ", addressArray);
   };
 
   const UserAddressContainer = (index) => {
@@ -46,6 +52,7 @@ const UserAddressComponent = ({
           <input
             type="text"
             placeholder="address"
+            defaultValue={addressArray[index.index]["address"]}
             onChange={(input) => onInputChange(input, "address")}
           />
         </div>
@@ -53,13 +60,15 @@ const UserAddressComponent = ({
           <input
             type="text"
             placeholder="city"
+            defaultValue={addressArray[index.index]["city"]}
             onChange={(input) => onInputChange(input, "city")}
           />
         </div>
         <div className="input">
           <input
-            type="text"
+            type="number"
             placeholder="pinCode"
+            defaultValue={addressArray[index.index]["pinCode"]}
             onChange={(input) => onInputChange(input, "pinCode")}
           />
         </div>
@@ -69,26 +78,18 @@ const UserAddressComponent = ({
 
   return (
     <div>
-      <Modal isOpen={openModal} contentLabel="Example Modal">
+      <Modal isOpen={openLoginAsModal} contentLabel="Example Modal">
         <div
-          className="Modal"
+          className="loginAsAddressModal"
           style={{
             backgroundColor: colors.COMPLIMENTARY_GREEN,
             color: colors.FONT_SECONDARY,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              width: "100%",
-              alignItems: "flex-start",
-            }}
-          >
+          <div className="loginAsAddressCrossImage">
             <img
+              className="loginAsAddressComponenetImage"
               onClick={() => closeModal()}
-              className="Image"
               src={crossImg}
               alt="Cross"
               height="30px"
@@ -99,7 +100,7 @@ const UserAddressComponent = ({
             <UserAddressContainer index={index} />
           ))}
 
-          <div className="buttons">
+          <div className="loginAsAddressbuttons">
             <button
               className="button"
               style={{
@@ -128,20 +129,13 @@ const UserAddressComponent = ({
           </div>
 
           {countAddress >= 1 ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                width: "100%",
-                alignItems: "flex-end",
-                flex: 1,
-              }}
-            >
+            <div className="loginAsAddressSkipImage">
               <img
-                onClick={() => onAddressSubmit()}
+                className="loginAsAddressComponenetImage"
+                onClick={() =>
+                  onAddressSubmit(setOpenLoginAsOpenModal, setOpenPetModal)
+                }
                 src={nextImg}
-                className="Image"
                 alt="skip"
                 height="30px"
                 width="30px"

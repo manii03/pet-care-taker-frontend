@@ -27,16 +27,32 @@
 }
 
 .input input {
-  height: 30vh;
+  height: 70px;
   width: 250vw;
   border: none;
 }
 
 
-.Image{
+.petAdditionComponenetImage{
   border: none;
   outline: none;
   margin: 10px;
   border-radius: 5px;
   height: fit-content;
+  height: 30px;
+  width: 30px;
+}
+
+.petAdditionComponentSkip{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  flex: 1;
+}
+
+.petAdditionComponentButtons{
+  display: flex;
+  justify-content: center;
 }

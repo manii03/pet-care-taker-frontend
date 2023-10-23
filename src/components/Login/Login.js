@@ -3,33 +3,27 @@ import { useState } from "react";
 import "./Login.css";
 import emailImg from "../../pictures/email.png";
 import passwordImg from "../../pictures/password.png";
-import { STRINGS } from "../../string";
 import { colors } from "../../utils/Colors";
 import { useNavigate } from "react-router-dom";
+import handleAuthStateChange from "./LoginFunctions/handleAuthStateChange";
+import onSubmit from "./LoginFunctions/onSubmit";
+import {
+  ALREADY_HAVE_ACCOUNT,
+  CLICK_HERE,
+  DONT_HAVE_ACCOUNT,
+  LOGIN,
+  SIGNUP,
+} from "../../constants/constants";
 
 function Login() {
-  const [currentAuthState, setCurrentAuthState] = useState(STRINGS.LOGIN);
-  const [alternativeAuthState, setAlternativeAuthState] = useState(
-    STRINGS.SIGNUP
-  );
-
+  const [currentAuthState, setCurrentAuthState] = useState(LOGIN);
+  const [alternativeAuthState, setAlternativeAuthState] = useState(SIGNUP);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(" ");
 
-  const handleAuthStateChange = () => {
-    setEmail("");
-    setName("");
-    setPassword("");
-    if (currentAuthState === STRINGS.SIGNUP) {
-      setCurrentAuthState(STRINGS.LOGIN);
-      setAlternativeAuthState(STRINGS.SIGNUP);
-    } else {
-      setCurrentAuthState(STRINGS.SIGNUP);
-      setAlternativeAuthState(STRINGS.LOGIN);
-    }
-  };
+  const navigate = useNavigate();
 
   const onInputChange = (input, inputType) => {
     if (inputType === "name") setName(input.target.value);
@@ -37,76 +31,12 @@ function Login() {
     if (inputType === "password") setPassword(input.target.value);
   };
 
-  const onSubmit = async (currentAuthState) => {
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    if ((!name && currentAuthState === STRINGS.SIGNUP) || !email || !password) {
-      console.log("something is empty");
-      return;
-    }
-
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    };
-
-    if (currentAuthState === STRINGS.SIGNUP) {
-      console.log("Hi i'm in :", currentAuthState);
-      let response = fetch("http://localhost:8000/signUp", options)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-
-          return Promise.reject(response);
-        })
-        .then((finalResponse) => {
-          localStorage.setItem("email", data.email);
-           navigate("/mainpage")
-          //{
-          //   state: {
-          //     email: data.email,
-          //     name: data.name,
-          //   },
-          // });
-        })
-        .catch((errorResponse) => {
-          errorResponse.json().then((error) => {
-            console.log("Error is : ", error);
-          });
-        });
+  const checkEMail = (inputValue) => {
+    let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+    if (!emailRegex.test(inputValue.target.value)) {
+      setMessage("Error! you have entered invalid email.");
     } else {
-      let response = fetch("http://localhost:8000/login", options)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-
-          return Promise.reject(response);
-        })
-        .then((finalResponse) => {
-          localStorage.setItem("email", data.email);
-          navigate("/mainpage")
-          // , {
-          //   state: {
-          //     email: data.email,
-          //     name: data.name,
-          //   },
-          // });
-        })
-        .catch((errorResponse) => {
-          console.log(errorResponse);
-          errorResponse.json().then((error) => {
-            console.log("Error is : ", error);
-          });
-        });
+      setMessage("");
     }
   };
 
@@ -134,7 +64,7 @@ function Login() {
         }}
       >
         {/* Don't show Name input field for login */}
-        {currentAuthState === STRINGS.SIGNUP ? (
+        {currentAuthState === SIGNUP ? (
           <div
             className="input"
             style={{
@@ -149,6 +79,10 @@ function Login() {
               value={name}
               required={true}
               onChange={(input) => onInputChange(input, "name")}
+              style={{
+                width: "100%",
+                height: "70px",
+              }}
             />
           </div>
         ) : (
@@ -167,7 +101,14 @@ function Login() {
             placeholder="Email"
             value={email}
             required={true}
-            onChange={(input) => onInputChange(input, "email")}
+            onChange={(input) => {
+              onInputChange(input, "email");
+              checkEMail(input);
+            }}
+            style={{
+              width: "100%",
+              height: "70px",
+            }}
           />
         </div>
         <div
@@ -184,16 +125,33 @@ function Login() {
             value={password}
             required={true}
             onChange={(input) => onInputChange(input, "password")}
+            style={{
+              width: "100%",
+              height: "70px",
+            }}
           />
         </div>
       </div>
       <div className="clickHereText">
         <p>
-          {currentAuthState === STRINGS.SIGNUP
-            ? STRINGS.ALREADY_HAVE_ACCOUNT
-            : STRINGS.DONT_HAVE_ACCOUNT}
-          {STRINGS.CLICK_HERE}
-          <span onClick={() => handleAuthStateChange()}>
+          {currentAuthState === SIGNUP
+            ? ALREADY_HAVE_ACCOUNT
+            : DONT_HAVE_ACCOUNT}
+          {CLICK_HERE}
+          <span
+            onClick={() =>
+              handleAuthStateChange(
+                setEmail,
+                setName,
+                setPassword,
+                currentAuthState,
+                setCurrentAuthState,
+                setAlternativeAuthState,
+                navigate,
+                
+              )
+            }
+          >
             {alternativeAuthState}
           </span>
         </p>
@@ -205,11 +163,12 @@ function Login() {
             backgroundColor: colors.COMPLIMENTARY_RED,
             color: colors.FONT_SECONDARY,
           }}
-          onClick={() => onSubmit(currentAuthState)}
+          onClick={() => onSubmit(currentAuthState, email, name, password,navigate, setMessage)}
         >
           {currentAuthState}
         </button>
       </div>
+      {message}
     </div>
   );
 }

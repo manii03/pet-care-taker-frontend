@@ -1,0 +1,14 @@
+.addressModal {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  width: 100%;
+}
+
+.crossImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: flex-start;
+}

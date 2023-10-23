@@ -47,6 +47,9 @@ function Home() {
             style={{
               backgroundColor: colors.COMPLIMENTARY_GREEN,
               color: colors.FONT_SECONDARY,
+              height: "25vh",
+              width: "15%",
+              minWidth: "150px",
             }}
           >
             Pet Owner
@@ -54,8 +57,10 @@ function Home() {
               className="HomePetImage"
               src={PetOwner}
               alt="PetOwner"
-              height={120}
-              width={120}
+              style={{
+                height: "15vh",
+                width: "75%",
+              }}
             ></img>
             <button
               className="learnMore"
@@ -72,6 +77,9 @@ function Home() {
             style={{
               backgroundColor: colors.COMPLIMENTARY_GREEN,
               color: colors.FONT_SECONDARY,
+              height: "25vh",
+              width: "15%",
+              minWidth: "150px",
             }}
           >
             Care Taker
@@ -79,8 +87,10 @@ function Home() {
               className="HomePetImage"
               src={CareTaker}
               alt="CareTaker"
-              height={120}
-              width={120}
+              style={{
+                height: "15vh",
+                width: "75%",
+              }}
             ></img>
             <button
               className="learnMore"
@@ -94,12 +104,12 @@ function Home() {
           </div>
         </div>
         <button
+          className="button"
           onClick={() => (window.location = "http://localhost:3000/login/")}
           style={{
             backgroundColor: colors.COMPLIMENTARY_RED,
             color: colors.FONT_SECONDARY,
           }}
-          className="getStarted"
         >
           Get Started
         </button>
