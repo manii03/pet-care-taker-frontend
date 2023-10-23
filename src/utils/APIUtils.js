@@ -18,7 +18,7 @@ async function triggerAPI(api, request) {
       return Promise.reject(response);
     })
     .then((response) => {
-      console.log(`${api}`+" RESPONSE IS : ", response);
+      console.log(`${api}` + " RESPONSE IS : ", response);
       return {
         message: "OK",
         response: response,

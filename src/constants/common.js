@@ -1,5 +1,5 @@
 //API constants
-export const LOCALHOST = "pet-care-taker.onrender.com/";
+export const LOCALHOST = "https://pet-care-taker.onrender.com/";
 
 export const PROD = "";
 
